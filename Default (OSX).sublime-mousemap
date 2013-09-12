@@ -1,0 +1,3 @@
+[
+	{ "button": "button1", "modifiers": ["alt"], "command": "go_to_path", "press_command": "drag_select" }
+]
