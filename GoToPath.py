@@ -30,6 +30,9 @@ class GoToPathCommand(sublime_plugin.TextCommand):
 		folder_name = self.get_folder()
 		root = view.settings().get("root")
 
+		pack_name = view.substr(sublime.Region(begin,end))
+
+			
 		if root:
 			root=root.replace("\\","/")
 			if folder_name.find(root) != -1:
@@ -37,18 +40,14 @@ class GoToPathCommand(sublime_plugin.TextCommand):
 		else:
 			root = folder_name
 
-		pack_name = view.substr(sublime.Region(begin,end))
-		pack_name = pack_name.replace(".","/")
+
 		root= root  +"/"+ pack_name
 		window = self.view.window()
 		window.open_file(root)
 	def get_folder(self):
 		file_name = self.view.file_name()
-
 		file_name = file_name.replace("\\","/")
 		last_index = file_name.rfind("/")
-		file_name = file_name[0:last_index]
-		print(file_name)
-		return file_name
+		return file_name[0:last_index]
 
 
